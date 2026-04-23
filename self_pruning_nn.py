@@ -6,8 +6,6 @@ Tredence AI Engineering Intern - Case Study
 This script implements a neural network that learns to prune itself during
 training using learnable "gate" parameters per weight. Gates are driven
 toward zero via an L1 sparsity regularization term in the loss function.
-
-Author: Candidate Submission
 """
 
 import torch
@@ -287,7 +285,7 @@ def train_experiment(lam, train_loader, test_loader, device,
     final_sparsity = compute_sparsity(model)
     gate_values    = collect_all_gates(model)
 
-    print(f"\n  ✅ Final — Accuracy: {final_acc:.2f}%  |  "
+    print(f"\n  Final — Accuracy: {final_acc:.2f}%  |  "
           f"Sparsity: {final_sparsity:.2f}%")
 
     return final_acc, final_sparsity, gate_values
@@ -385,7 +383,7 @@ def main():
     torch.manual_seed(42)
     np.random.seed(42)
 
-    print("\n📥 Loading CIFAR-10 …")
+    print("\nLoading CIFAR-10 …")
     train_loader, test_loader = get_cifar10_loaders(batch_size=256)
 
     # Three λ values: low → mild pruning, medium → balanced, high → aggressive
@@ -413,7 +411,7 @@ def main():
     plot_gate_distributions(results, save_path="/home/claude/gate_distributions.png")
     plot_summary_bar(results,        save_path="/home/claude/lambda_tradeoff.png")
 
-    print("\n✅ Experiment complete!\n")
+    print("\nExperiment complete!\n")
     return results
 
 
